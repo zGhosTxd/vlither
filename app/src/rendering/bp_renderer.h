@@ -13,6 +13,9 @@ typedef struct bp_instance {
     ig_vec4 color;
     float shadow;
     float eye;
+
+    float texpos;    // posição do segmento (usado para linha branca)
+    float is_local;  // 1.0 = sua cobra / 0.0 = outros jogadores
 } bp_instance;
 
 typedef struct bp_renderer {
@@ -24,8 +27,5 @@ typedef struct bp_renderer {
 
 bp_renderer* bp_renderer_create(ig_context* context, unsigned int max_instances);
 void bp_renderer_push(bp_renderer* bp_renderer, const bp_instance* bp_instance);
-void bp_renderer_push_centerline(bp_renderer* bp_renderer, const bp_instance* bp_instance);  // <--- ADICIONADA
 void bp_renderer_flush(bp_renderer* bp_renderer, ig_context* context, _ig_frame* frame);
-void bp_renderer_destroy(bp_renderer* bp_renderer, ig_context* context);
-
-#endif
+void bp_renderer_destroy(bp_renderer* bp_r_*_
