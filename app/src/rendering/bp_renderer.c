@@ -53,7 +53,8 @@ bp_renderer* bp_renderer_create(ig_context* context, unsigned int max_instances)
 					.inputRate = VK_VERTEX_INPUT_RATE_INSTANCE
 				},
 			},
-			.vertexAttributeDescriptionCount = 6,
+			/* ADAPTED: adicionamos mais um atributo de instância (is_local) */
+			.vertexAttributeDescriptionCount = 7,
 			.pVertexAttributeDescriptions = (VkVertexInputAttributeDescription[]) {
 				{
 					.location = 0,
@@ -90,6 +91,13 @@ bp_renderer* bp_renderer_create(ig_context* context, unsigned int max_instances)
 					.binding = 1,
 					.format = VK_FORMAT_R32_SFLOAT,
 					.offset = offsetof(bp_instance, eye)
+				},
+				/* NOVO: is_local (1.0 = local player, 0.0 = outros) */
+				{
+					.location = 6,
+					.binding = 1,
+					.format = VK_FORMAT_R32_SFLOAT,
+					.offset = offsetof(bp_instance, is_local)
 				}
 			}
 		},
