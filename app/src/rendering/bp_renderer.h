@@ -8,22 +8,23 @@
 #include <math/ig_vec4.h>
 
 typedef struct bp_instance {
-	ig_vec4 circ;
-	ig_vec2 ratios;
-	ig_vec4 color;
-	float shadow;
-	float eye;
+    ig_vec4 circ;
+    ig_vec2 ratios;
+    ig_vec4 color;
+    float shadow;
+    float eye;
 } bp_instance;
 
 typedef struct bp_renderer {
-	unsigned int instance_count;
-	bp_instance* instances;
-	VkPipeline pipeline;
-	ig_dbuffer* instance_buffer;
+    unsigned int instance_count;
+    bp_instance* instances;
+    VkPipeline pipeline;
+    ig_dbuffer* instance_buffer;
 } bp_renderer;
 
 bp_renderer* bp_renderer_create(ig_context* context, unsigned int max_instances);
 void bp_renderer_push(bp_renderer* bp_renderer, const bp_instance* bp_instance);
+void bp_renderer_push_centerline(bp_renderer* bp_renderer, const bp_instance* bp_instance);  // <--- ADICIONADA
 void bp_renderer_flush(bp_renderer* bp_renderer, ig_context* context, _ig_frame* frame);
 void bp_renderer_destroy(bp_renderer* bp_renderer, ig_context* context);
 
